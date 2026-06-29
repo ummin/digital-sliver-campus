@@ -2,11 +2,11 @@
 import Link from "next/link"
 
 // 비개발자 수정 포인트 — 브랜드명과 푸터 링크는 이 상수만 바꾸면 됨
-const BRAND = "Next.js Starter Kit"
+const BRAND = "디지털 실버 캠퍼스"
 const FOOTER_LINKS: ReadonlyArray<{ label: string; href: string }> = [
-  { label: "GitHub", href: "https://github.com" },
-  { label: "Next.js", href: "https://nextjs.org" },
-  { label: "shadcn/ui", href: "https://ui.shadcn.com" },
+  { label: "배우기", href: "/learn" },
+  { label: "실습 목록", href: "/contents" },
+  { label: "문의하기", href: "/contact" },
 ]
 
 export function SiteFooter() {
