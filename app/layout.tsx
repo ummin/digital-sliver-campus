@@ -19,8 +19,8 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "Next.js Starter Kit",
-  description: "범용 Next.js 16 + Tailwind v4 + shadcn/ui 스타터킷",
+  title: "디지털 실버 캠퍼스",
+  description: "중장년·노년층을 위한 키오스크·스마트폰 앱·AI 도구 사용법 학습 서비스",
 }
 
 export default function RootLayout({

@@ -1,90 +1,57 @@
-// 메인 페이지 — 스타터킷 소개 (Hero / What's Included / Quick Start / CTA)
+// 홈 페이지 — 환영 문구 + 카테고리 대표 카드(F001/F010) + 배우기 시작하기 CTA
+// TODO: 카테고리 카드는 추후 Notion API 연동으로 대체 (현재는 정적 placeholder)
 import Link from "next/link"
-import { ArrowRight, FormInput, Moon, Palette, Zap } from "lucide-react"
+import { ArrowRight, Smartphone, Sparkles, Tv } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import {
   Card,
-  CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
 
-// 비개발자 수정 포인트 — 사이트 이름과 소개 문구
-const STARTER_NAME = "Next.js Starter Kit"
-const STARTER_TAGLINE = "범용 웹사이트 셸 — 어떤 주제든 빠르게 시작하세요"
+// 비개발자 수정 포인트 — 환영 문구
+const WELCOME_TITLE = "디지털 실버 캠퍼스에 오신 것을 환영합니다"
+const WELCOME_DESCRIPTION =
+  "키오스크, 스마트폰 앱, AI 도구 사용법을 가장 쉬운 단계부터 하나씩 따라 하며 배워보세요."
 
-// 비개발자 수정 포인트 — 카드로 노출할 핵심 기능 4가지
-const FEATURES: ReadonlyArray<{ title: string; desc: string; icon: typeof Zap }> = [
-  { title: "Next.js 16 App Router", desc: "최신 RSC와 라우팅 컨벤션 적용", icon: Zap },
-  { title: "Tailwind v4 + shadcn", desc: "radix-nova 스타일의 디자인 토큰 일체", icon: Palette },
-  { title: "다크모드", desc: "next-themes로 light/dark/system 지원", icon: Moon },
-  { title: "Form 검증", desc: "React Hook Form + Zod 즉시 사용 가능", icon: FormInput },
+// 비개발자 수정 포인트 — 홈에 노출할 카테고리 대표 카드 3종 (F001/F010)
+const CATEGORIES: ReadonlyArray<{ title: string; desc: string; icon: typeof Tv }> = [
+  { title: "키오스크 사용법", desc: "식당·카페·은행 키오스크를 차근차근 따라 해보세요", icon: Tv },
+  { title: "스마트폰 앱", desc: "자주 쓰는 앱을 쉽고 안전하게 사용하는 방법", icon: Smartphone },
+  { title: "AI 도구", desc: "생활에 도움이 되는 AI 도구 활용법을 배워보세요", icon: Sparkles },
 ]
-
-const QUICK_START = `git clone <your-repo>
-npm install
-npm run dev`
 
 export default function HomePage() {
   return (
     <div className="mx-auto flex max-w-5xl flex-col gap-16 px-4 py-16 md:py-24">
       <section className="flex flex-col items-start gap-4 md:items-center md:text-center">
-        <h1 className="text-3xl font-bold tracking-tight md:text-5xl">{STARTER_NAME}</h1>
-        <p className="max-w-xl text-muted-foreground md:text-lg">{STARTER_TAGLINE}</p>
-        <div className="flex flex-wrap gap-2">
-          <Button asChild>
-            <Link href="/components">
-              컴포넌트 살펴보기
-              <ArrowRight />
-            </Link>
-          </Button>
-          <Button asChild variant="outline">
-            <Link href="https://github.com" target="_blank" rel="noreferrer">
-              GitHub
-            </Link>
-          </Button>
-        </div>
-      </section>
-
-      <section className="flex flex-col gap-6">
-        <h2 className="text-2xl font-semibold tracking-tight">포함된 것</h2>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {FEATURES.map(({ title, desc, icon: Icon }) => (
-            <Card key={title}>
-              <CardHeader>
-                <Icon className="size-5 text-primary" />
-                <CardTitle>{title}</CardTitle>
-                <CardDescription>{desc}</CardDescription>
-              </CardHeader>
-            </Card>
-          ))}
-        </div>
-      </section>
-
-      <section className="flex flex-col gap-6">
-        <h2 className="text-2xl font-semibold tracking-tight">시작하기</h2>
-        <Card>
-          <CardContent>
-            <pre className="overflow-x-auto rounded-md bg-muted p-4 text-sm leading-relaxed">
-              <code>{QUICK_START}</code>
-            </pre>
-          </CardContent>
-        </Card>
-      </section>
-
-      <section className="flex flex-col items-start gap-3 md:items-center md:text-center">
-        <h2 className="text-2xl font-semibold tracking-tight">바로 시작해보세요</h2>
-        <p className="text-muted-foreground">
-          컴포넌트 갤러리에서 필요한 조각을 복사해 사용할 수 있습니다.
-        </p>
+        <h1 className="text-3xl font-bold tracking-tight md:text-5xl">{WELCOME_TITLE}</h1>
+        <p className="max-w-xl text-lg text-muted-foreground md:text-xl">{WELCOME_DESCRIPTION}</p>
         <Button asChild size="lg">
-          <Link href="/components">
-            컴포넌트 살펴보기
+          <Link href="/learn">
+            배우기 시작하기
             <ArrowRight />
           </Link>
         </Button>
+      </section>
+
+      <section className="flex flex-col gap-6">
+        <h2 className="text-2xl font-semibold tracking-tight">배우고 싶은 주제를 선택하세요</h2>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {CATEGORIES.map(({ title, desc, icon: Icon }) => (
+            <Link key={title} href="/learn">
+              <Card className="h-full transition-colors hover:bg-muted/50">
+                <CardHeader>
+                  <Icon className="size-6 text-primary" />
+                  <CardTitle className="text-lg">{title}</CardTitle>
+                  <CardDescription>{desc}</CardDescription>
+                </CardHeader>
+              </Card>
+            </Link>
+          ))}
+        </div>
       </section>
     </div>
   )

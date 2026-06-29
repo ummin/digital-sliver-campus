@@ -16,11 +16,12 @@ import {
 import { ThemeToggle } from "@/components/layout/theme-toggle"
 
 // 비개발자 수정 포인트 — 브랜드명과 메뉴는 이 상수만 바꾸면 됨
-const BRAND = "Next.js Starter Kit"
+const BRAND = "디지털 실버 캠퍼스"
 const NAV: ReadonlyArray<{ label: string; href: string; external?: boolean }> = [
   { label: "홈", href: "/" },
-  { label: "컴포넌트", href: "/components" },
-  { label: "GitHub", href: "https://github.com", external: true },
+  { label: "배우기", href: "/learn" },
+  { label: "실습 목록", href: "/contents" },
+  { label: "문의하기", href: "/contact" },
 ]
 
 export function SiteHeader() {
